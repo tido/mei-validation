@@ -1,5 +1,3 @@
-/* @flow */
-
 import path from 'path';
 import java from 'java';
 
@@ -16,34 +14,30 @@ const rngValidator = {
   TYPE: 'rng',
 
   validateWithFile: (
-    xmlString: string,
-    schemaPath: string,
-    shouldCache: boolean
-  ): Message[] =>
+    xmlString,
+    schemaPath,
+    shouldCache
+  ) =>
     validate(xmlString, schemaPath, shouldCache, ['loadSchemaFile', schemaPath]),
 
   validateWithFileSync: (
-    xmlString: string,
-    schemaPath: string,
-    shouldCache: boolean
-  ): Message[] =>
+    xmlString,
+    schemaPath,
+    shouldCache
+  ) =>
     validateSync(xmlString, schemaPath, shouldCache, ['loadSchemaFile', schemaPath]),
 
   validateWithStringSync: (
-    xmlString: string,
-    schemaPath: string,
-    rngString: string,
-    shouldCache: boolean
-  ): Message[] =>
+    xmlString,
+    schemaPath,
+    rngString,
+    shouldCache
+  ) =>
     validateSync(xmlString, schemaPath, shouldCache, ['loadSchemaString', rngString, '/']),
 };
 
-const validate = (
-  xmlString: string,
-  schemaPath: string,
-  shouldCache: boolean,
-  params: any[]
-): Promise<Message[]> => (shouldCache && cache[schemaPath])
+const validate = (xmlString, schemaPath, shouldCache, params) =>
+(shouldCache && cache[schemaPath])
     ? runValidation(cache[schemaPath])
     : createOutputStream()
       .then(createValidator)
@@ -109,12 +103,7 @@ const runValidation = (xmlString) => ({ validator, result }) => new Promise((res
   });
 });
 
-const validateSync = (
-  xmlString: string,
-  schemaPath: string,
-  shouldCache: boolean,
-  params: any[]
-): Message[] => {
+const validateSync = (xmlString, schemaPath, shouldCache, params) => {
   let result;
   let validator;
 
@@ -146,7 +135,7 @@ const createMessages = flow(
 
 const regex = /(.*):(\d+):(\d+): (\w+): (.*)/;
 
-function createMessage(rawMessage: string): Message {
+function createMessage(rawMessage) {
   if (rawMessage === '') return null;
   const match = regex.exec(rawMessage);
   if (!match) {

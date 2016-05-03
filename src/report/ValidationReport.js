@@ -1,23 +1,20 @@
-/* @flow */
-
-import Message from './Message';
 
 export default class ValidationReport {
-  isValid: boolean;
-  messages: Message[];
+  isValid;
+  messages;
 
-  static create(messages: Array<Message>): ValidationReport {
+  static create(messages) {
     const isValid = !messages.some(message => message.isError());
 
     return new ValidationReport(isValid, messages);
   }
 
-  constructor(isValid: boolean, messages: Message[]) {
+  constructor(isValid, messages) {
     this.isValid = isValid;
     this.messages = messages;
   }
 
-  getErrors(): Message[] {
+  getErrors() {
     return this.messages.filter((message) => message.isError());
   }
 }

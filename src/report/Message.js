@@ -1,26 +1,25 @@
-/* @flow */
 
 export default class Message {
-  validator: string;
-  type: string;
-  text: string;
+  validator;
+  type;
+  text;
 
-  constructor(validator: string, type: string, text: string) {
+  constructor(validator, type, text) {
     this.validator = validator;
     this.type = type;
     this.text = text;
   }
 
-  isError(): boolean {
+  isError() {
     return this.type === MessageType.ERROR;
   }
 
-  toString(): string {
+  toString() {
     return `${this.type.toUpperCase()} [${this.validator}] ${this.text}`;
   }
 }
 
-export const MessageType: { [key: string]: string } = {
+export const MessageType = {
   ERROR: 'error',
   WARNING: 'warning',
 };

@@ -1,11 +1,8 @@
-/* @flow */
-
 import * as gumyen from 'gumyen';
 
 const cache = {};
 
-export function read<T>(filePath: string, transform: ?(str: string) => T):
-                     Promise<T> {
+export function read(filePath, transform) {
   return new Promise((resolve, reject) => {
     gumyen.readFileWithDetectedEncoding(filePath, (err, result) => {
       if (!err) {
@@ -18,8 +15,7 @@ export function read<T>(filePath: string, transform: ?(str: string) => T):
   });
 }
 
-export function readWithCache<T>(filePath: string, transform: ?(str: string) => T):
-                               Promise<T | string> {
+export function readWithCache(filePath, transform) {
   if (cache[filePath]) {
     return Promise.resolve(cache[filePath]);
   }
@@ -31,8 +27,7 @@ export function readWithCache<T>(filePath: string, transform: ?(str: string) => 
     });
 }
 
-export function readSync<T>(filePath: string, transform: ?(str: string) => T):
-                     T | string {
+export function readSync(filePath, transform) {
   const data = gumyen.readFileWithDetectedEncodingSync(filePath);
 
   if (transform) {
@@ -42,8 +37,7 @@ export function readSync<T>(filePath: string, transform: ?(str: string) => T):
   return data;
 }
 
-export function readWithCacheSync<T>(filePath: string, transform: ?(str: string) => T):
-                               T | string {
+export function readWithCacheSync(filePath, transform) {
   if (cache[filePath]) {
     return cache[filePath];
   }

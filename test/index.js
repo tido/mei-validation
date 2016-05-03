@@ -1,4 +1,3 @@
-/* @flow */
 
 import fs from 'fs';
 import path from 'path';
@@ -8,16 +7,24 @@ import ValidationReport from '../src/report/ValidationReport';
 
 const { ok, isTrue, isFalse, lengthOf, instanceOf } = assert;
 
-const validMEIPath = path.resolve(__dirname, 'mei/valid.mei');
-const validMEI = fs.readFileSync(validMEIPath);
-console.log(validMEI);
+const schemaPaths = {
+  rng: path.resolve(__dirname, 'schema/tido.rng'),
+  schematron: path.resolve(__dirname, 'schema/tido.xsl'),
+};
 
 describe('validation', () => {
+  let validMEI;
+
+  before(() => {
+    const validMEIPath = path.resolve(__dirname, 'mei/valid.mei');
+    validMEI = fs.readFileSync(validMEIPath, 'utf-8');
+  });
+
   describe('#validate', () => {
     describe('given a not well-formed XML string and no schema paths', () => {
       it('passes an error and no result to the cb function', (done) => {
         validation
-          .validate('sdf')
+          .validate('sdf', schemaPaths)
           .then(() => {
             done('Validating a not well-formed XML fragment should throw an error.');
           })
@@ -30,7 +37,7 @@ describe('validation', () => {
       describe('given a well-formed invalid XML string and no schema paths', () => {
         it('passes no error (null) and an invalid validation report to the cb function', (done) => {
           validation
-            .validate('<xml/>')
+            .validate('<xml/>', schemaPaths)
             .then((result) => {
               instanceOf(result, ValidationReport);
               isFalse(result.isValid);
@@ -44,7 +51,7 @@ describe('validation', () => {
       describe('given a valid MEI string and no schema paths', () => {
         it('passes no error (null) and a valid validation report to the cb function', (done) => {
           validation
-             .validate(validMEI)
+             .validate(validMEI, schemaPaths)
              .then((result) => {
                instanceOf(result, ValidationReport);
                isTrue(result.isValid);
@@ -60,13 +67,13 @@ describe('validation', () => {
   describe('#validateSync', () => {
     describe('given a not well-formed XML string and no schema paths', () => {
       it('throws an error', () => {
-        const run = () => validation.validateSync('sdf');
+        const run = () => validation.validateSync('sdf', schemaPaths);
         assert.throws(run);
       });
 
       describe('given a well-formed invalid XML string and no schema paths', () => {
         it('returns an invalid validation report', () => {
-          const report = validation.validateSync('<xml/>');
+          const report = validation.validateSync('<xml/>', schemaPaths);
           assert.instanceOf(report, ValidationReport);
           assert.isFalse(report.isValid);
           assert.lengthOf(report.getErrors(), 1);
@@ -75,7 +82,7 @@ describe('validation', () => {
 
       describe('given a valid MEI string and no schema paths', () => {
         it('returns a valid validation report', () => {
-          const report = validation.validateSync(validMEI);
+          const report = validation.validateSync(validMEI, schemaPaths);
           assert.instanceOf(report, ValidationReport);
           assert.isTrue(report.isValid);
           assert.lengthOf(report.getErrors(), 0);

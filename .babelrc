@@ -1,7 +1,6 @@
 {
   "presets": ["es2015-loose"],
   "plugins": [
-    ["transform-flow-strip-types", { "loose": true }],
     ["transform-class-properties", { "loose": true }],
     ["transform-es2015-destructuring", { "loose": true }],
     ["transform-object-rest-spread", { "loose": true }],
