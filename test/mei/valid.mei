@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.music-encoding.org/ns/mei" meiversion="3.0.0" xmlns:tido="http://tido-music.com/ns/1.0" xml:id="s00">
+  <meiHead xml:id="s01">
+    <tido:style xml:id="s01a">
+      @import 'index.tss';
+    </tido:style>
+    <fileDesc xml:id="s02">
+      <titleStmt xml:id="s03">
+        <title xml:id="s04">Hand encoded test file</title>
+        <respStmt xml:id="s05"><corpName role="creator" xml:id="s06">Tido Enterprise GmbH</corpName></respStmt>
+      </titleStmt>
+      <pubStmt xml:id="s07">
+        <respStmt xml:id="s08"><corpName xml:id="s09">Tido Enterprise GmbH</corpName></respStmt>
+        <address xml:id="s10">
+          <addrLine xml:id="s11">Talstrasse, Leipzig</addrLine>
+        </address>
+        <availability xml:id="s12">
+          <useRestrict xml:id="s13"><!-- TODO add proper license statement --></useRestrict>
+        </availability>
+      </pubStmt>
+      <seriesStmt xml:id="s14">
+        <title xml:id="s15">Tido MEI Examplars</title>
+        <respStmt xml:id="s16"><corpName xml:id="s17">Tido</corpName></respStmt>
+      </seriesStmt>
+    </fileDesc>
+    <encodingDesc xml:id="s18">
+      <projectDesc xml:id="s19">
+        <p xml:id="s20">Encoded by hand in order to illustrate the encoding of a specific notation</p>
+      </projectDesc>
+    </encodingDesc>
+  </meiHead>
+  <music xml:id="s5619">
+    <body xml:id="s5620">
+      <mdiv xml:id="s5621">
+        <score xml:id="e01">
+          <scoreDef xml:id="e02">
+            <staffGrp xml:id="e03">
+              <staffDef xml:id="e04" n="1" lines="5">
+                <clef xml:id="e05" line="2" shape="G"/>
+                <keySig xml:id="e06" pname="g" mode="major"/>
+                <meterSig xml:id="e07" count="2" unit="4"/>
+              </staffDef>
+              <staffDef xml:id="e08" n="2"  lines="5">
+                <clef xml:id="e09" line="4" shape="F"/>
+                <keySig xml:id="e10" pname="g" mode="major"/>
+                <meterSig xml:id="e11" count="2" unit="4"/>
+              </staffDef>
+            </staffGrp>
+          </scoreDef>
+          <section xml:id="e12">
+            <measure xml:id="e13" n="1">
+              <staff xml:id="e14" n="1">
+                <layer xml:id="e15" n="1">
+                  <note dur="2" pname="c" oct="4" stem.dir="up" xml:id="n1"/>
+                  <note dur="2" pname="c" oct="4" stem.dir="up" xml:id="n2"/>
+                </layer>
+              </staff>
+            </measure>
+          </section>
+        </score>
+      </mdiv>
+    </body>
+  </music>
+</mei>

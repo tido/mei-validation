@@ -1,0 +1,12 @@
+[ignore]
+.*/node_modules/.*
+./declarations
+
+[include]
+./src
+
+[libs]
+./declarations
+./src/declarations.js
+
+[options]
