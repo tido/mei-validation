@@ -1,9 +1,9 @@
 {
   "name": "mei-validation-js",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Validating MEI in node",
   "author": "",
-  "main": "index.js",
+  "main": "lib/index.js",
   "license": "ISC",
   "repository": {
     "type": "git",
@@ -11,14 +11,12 @@
   },
   "private": true,
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register --require babel-polyfill"
+    "test": "mocha 'src/**/__tests__/*.js' --compilers js:babel-core/register --require babel-polyfill",
+    "prepublish": "babel src --out-dir lib && mocha 'lib/**/__tests__/*.js'"
   },
   "dependencies": {
-    "async": "^1.4.2",
-    "cli-color": "^1.0.0",
     "gumyen": "0.0.6",
     "java": "^0.6.1",
-    "minimist": "^1.2.0",
     "xslt4node": "^0.2.0",
     "lodash": "4.6.1"
   },

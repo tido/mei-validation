@@ -1,22 +1,21 @@
-
 import fs from 'fs';
 import path from 'path';
 import { assert } from 'chai';
-import * as validation from '../src';
-import ValidationReport from '../src/report/ValidationReport';
+import * as validation from '..';
+import ValidationReport from '../report/ValidationReport';
 
 const { ok, isTrue, isFalse, lengthOf, instanceOf } = assert;
 
 const schemaPaths = {
-  rng: path.resolve(__dirname, 'schema/tido.rng'),
-  schematron: path.resolve(__dirname, 'schema/tido.xsl'),
+  rng: path.resolve(__dirname, '../../resources/schema/tido.rng'),
+  schematron: path.resolve(__dirname, '../../resources/schema/tido.xsl'),
 };
 
 describe('validation', () => {
   let validMEI;
 
   before(() => {
-    const validMEIPath = path.resolve(__dirname, 'mei/valid.mei');
+    const validMEIPath = path.resolve(__dirname, '../../resources/mei/valid.mei');
     validMEI = fs.readFileSync(validMEIPath, 'utf-8');
   });
 

@@ -1,6 +1,3 @@
-src/tss/parse/syntax.js
-src/declarations.js
-/declarations
-gulp/web
-build
 vendor
+lib
+resources
