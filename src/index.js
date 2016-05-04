@@ -4,8 +4,6 @@ import ValidationReport from './report/ValidationReport';
 import rng from './validator/rng';
 import schematron from './validator/schematron';
 
-export * from './util';
-
 export function validate(meiString, schemaPaths, shouldCache = false) {
   const validationSteps = [
     rng.validateWithFile(meiString, schemaPaths.rng, shouldCache),
