@@ -7,7 +7,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tido/mei-validations-js.git"
+    "url": "https://github.com/tido/mei-validation-js.git"
   },
   "private": true,
   "scripts": {
