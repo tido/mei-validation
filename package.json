@@ -2,9 +2,9 @@
   "name": "mei-validation-js",
   "version": "0.1.0",
   "description": "Validating MEI in node",
-  "author": "",
+  "author": "Tido",
   "main": "lib/index.js",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/tido/mei-validation-js.git"
