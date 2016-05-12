@@ -1,43 +1,50 @@
-# mei-validation-js
+# tido-mei-validation
 Validating MEI in node
 
 ## Install
 
 ```bash
-git clone https://github.com/tido/mei-validation-js.git
-cd mei-validation-js
+git clone https://github.com/tido/mei-validation.git
+cd mei-validation
 npm install
 ```
 
 ### Java dependency
-Beside the npm dependencies, you will also need to have `java` runtime environment
+Beside the npm dependencies, you will also need to have a Java Runtime Environment (JRE)
 installed.
 
 ## Usage
 
-Use it asyncronously (with ES6 promises):
+You can validate XML strings asynchronously by calling `validate`, which returns a Promise:
 ```js
-validate(meiString, schemaPaths)
-.then((result) => {
-  // process result
-  done();
-})
-.catch(done);
+var validation = require('tido-mei-validation');
+validation.validate(meiString, schemaPaths)
+  .then(report => {
+    // process the validation report
+    var status = report.isValid ? 'valid' : 'invalid';
+    console.log('document is ' + status);
+    report.messages.forEach(message => {
+      console.log(message.toString());
+    });
+  })
+  .catch(err => console.log(err));
 ```
-Note that currently the asyncronous function can only be used in an ES6 environment,
-but we are planning to use babel polifill in order to make this available
-for use with ES5 too
+`validate` depends on a global Promise object, which is available when you use
+a recent version of Node. If you'd like to run validation on an older version
+of Node, you need to install a Promise polyfill.
 
-Use it syncronously:
+The synchronous counterpart of `validate`, `validateSync`, can be used this way:
 ```js
+var validation = require('tido-mei-validation');
 var report = validation.validateSync(meiString, schemaPaths);
 ```
 
-In both cases `shcemaPaths` is an object that specifies the paths
-to RGN and Schematron schemas:
+Both functions take a string providing the input XML as first argument. The second
+argument, `schemaPaths`, must be an object that specifies the paths to an RNG
+schema and an XSLT stylesheet for Schematron validation with Saxon:
 ```js
 var schemaPaths = {
   rng: 'path/to/rng/schema.rng',
-  schematron: 'path/to/schmatron/schema.xsl'),
+  schematron: 'path/to/schmatron/schema.xsl',
 };
 ```
