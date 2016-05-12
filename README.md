@@ -9,12 +9,9 @@ cd mei-validation-js
 npm install
 ```
 
-## Java dependencies
-In order to build the schema and guidelines you will need
-- `java` runtime environment
-- `JDK`
-- `ant`
-- `saxon`
+### Java dependency
+Beside the npm dependencies, you will also need to have `java` runtime environment
+installed.
 
 ## Usage
 
