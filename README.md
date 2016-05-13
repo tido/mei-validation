@@ -29,8 +29,8 @@ validation.validate(meiString, schemaPaths)
   })
   .catch(err => console.log(err));
 ```
-`validate` depends on a global Promise object, which is available when you use
-a recent version of Node. If you'd like to run validation on an older version
+`validate` depends on a global Promise object, which is available in `node`
+natively since v4.0.0. If you'd like to run validation on an older version
 of Node, you need to install a Promise polyfill.
 
 The synchronous counterpart of `validate`, `validateSync`, can be used this way:
