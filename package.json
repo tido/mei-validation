@@ -1,6 +1,6 @@
 {
   "name": "tido-mei-validation",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Validating MEI in node",
   "author": "Tido",
   "main": "lib/index.js",
