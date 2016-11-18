@@ -16,7 +16,7 @@
   "engines" : { "node" : ">=4.0.0" },
   "dependencies": {
     "gumyen": "0.0.6",
-    "java": "^0.6.1",
+    "java": "^0.8.0",
     "lodash": "4.6.1",
     "xmldom": "^0.1.22",
     "xslt4node": "^0.2.0"
