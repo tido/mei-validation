@@ -1,6 +1,6 @@
 {
   "name": "tido-mei-validation",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Validating MEI in node",
   "author": "Tido",
   "main": "lib/index.js",
@@ -13,7 +13,9 @@
     "test": "mocha 'src/**/__tests__/*.js' --compilers js:babel-core/register --require babel-polyfill",
     "prepublish": "babel src --out-dir lib && mocha 'lib/**/__tests__/*.js'"
   },
-  "engines" : { "node" : ">=4.0.0" },
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "dependencies": {
     "gumyen": "0.0.6",
     "java": "^0.8.0",
